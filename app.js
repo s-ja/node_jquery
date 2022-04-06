@@ -12,3 +12,7 @@ app.get("/",function(req,res){
 }).listen(port,function(){
     console.log("server port : "+port)
 })
+
+app.get("/index2",function(req,res){
+    res.sendFile(_dirname+"/public/index2.html")
+})
