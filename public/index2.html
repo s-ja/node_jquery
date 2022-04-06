@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>node + jQuery 실습</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      #pac {
+        width: 90px;
+        height: 90px;
+        background: url(images/Pacman.svg);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>탐색선택자</h1>
+    <!-- 
+    <div id="wrap">
+      <p>내용1</p>
+      <p style="display: none">내용2</p>
+      <p>내용3</p>
+    </div>
+    <form action="#">
+      <p id="zone1">
+        <select name="course" id="course">
+          <option value="opt1">옵션1</option>
+          <option value="opt2" selected>옵션2</option>
+          <option value="opt3">옵션3</option>
+        </select>
+      </p>
+      <p id="zone2">
+        <input type="checkbox" name="hobby1" value="독서" />독서
+        <input type="checkbox" name="hobby2" value="자전거" checked />자전거
+        <input type="checkbox" name="hobby3" value="등산" />등산
+      </p>
+      <p id="zone3">
+        <input type="radio" name="gender" value="male" />남성
+        <input type="radio" name="gender" value="female" checked />여성
+      </p>
+    </form> -->
+
+    <h1>객체 조작</h1>
+    <p>객체를 생성, 복제, 삭제, 속성 변환하는 조작 메소드에 대해 살펴봅시다.</p>
+
+    <h2>이미지 캐러셀 만들기</h2>
+    <ol>
+      <li>픽사베이에서 사진 4장 다운받기</li>
+      <li>가능하면 비슷한 크기로 다운받고, 이름을 통일</li>
+      <li>landscape1~4.jpg 로 /images폴더로 이동</li>
+      <li>캐러셀의 구조를 아래와 같이 작성</li>
+    </ol>
+
+    <div id="carousel">
+      <div><img src="images/landscape1.jpg" alt="" /></div>
+      <div><img src="images/landscape2.jpg" alt="" /></div>
+      <div><img src="images/landscape3.jpg" alt="" /></div>
+      <div><img src="images/landscape4.jpg" alt="" /></div>
+    </div>
+
+    <!-- <div id="result">
+      <p>이 부분이 조작됩니다.</p>
+    </div>
+    <button>조작</button> -->
+
+    <!-- p.222 .attr() vs .removeAttr() -->
+
+    <!-- <section id="sec_1">
+      <h2>이미지 속성 조작</h2>
+      <p>
+        <img src="https://picsum.photos/200/300" alt="placeholder" />
+      </p>
+    </section>
+    <button id="bt2">이전</button>
+    <button id="bt3">다음</button>
+
+    <div id="pack_zone">
+      <div id="pac"></div>
+    </div> -->
+
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      //   $(function () {
+      //     $("#wrap p:hidden").css({
+      //       display: "block",
+      //       backgroundColor: "#ff0",
+      //     });
+
+      //     const z1 = $("#zone1 :selected").val();
+      //     console.log("선택된 요소의 값 : " + z1);
+
+      //     const z2 = $("#zone1 :selected").val();
+      //     console.log("선택된 요소의 값 : " + z2);
+
+      //     const z3 = $("#zone1 :selected").val();
+      //     console.log("선택된 요소의 값 : " + z3);
+
+      //     $("#course").change(function () {
+      //       // console.log($(this).val()+"을 선택했습니다.");
+      //       // console.log(el, el.index());
+      //       const price = {
+      //         opt1: 7000,
+      //         opt2: 12000,
+      //         opt3: 20000,
+      //       };
+      //       let select_opt = $(this).val();
+      //       let final_price = price[select_opt];
+      //       $("#credit").text(final_price + "원");
+      //     });
+      //   });
+
+      $("button").click(function () {
+        // $("result").text("<h2>조작된 텍스트</h2>");
+        $("result").html("<h2>조작된 텍스트</h2>");
+      });
+
+      $("#bt2").click(function () {
+        const target_img = $("#sec_1").find("img");
+        let img_num = 1;
+        $("#bt2").click(function () {
+          if (img_num < 0) img_num = 100;
+          img_num--;
+          const img_url = "https://picsum.photos/id/" + img_num + "/200/300";
+          target_img.attr("src", img_url);
+        });
+
+        $(window).keyup(function (e) {
+          if (e.keyCode == 37) {
+            $("#bt2").click();
+          } else if (e.keyCode == 38) {
+            $("#bt3").click();
+          } else if (e.keyCode == 39) {
+            $("#bt3").click();
+          } else if (e.keyCode == 39) {
+            $("#bt3").click();
+          }
+        });
+        //   p.221 코딩해보세요
+        // const target_img = $("sec_1").find("img");
+        // const img_src = target_img.attr("src");
+        // const img_border = target_img.attr("border");
+        // const img_alt = target_img.attr("alt");
+
+        // $("#sec_1").find("img").attr();
+
+        // target_img.attr("src", "https://picsum.photos/id/10/200/300");
+
+        $("carousel > div:first").addClass("showing");
+
+        function next_img() {
+          let curr_div = $("#carousel > div.showing");
+          // console.log(curr_div.index());
+          // let next_div = curr_div.next();
+          // next_div.addClass("showing");
+          // curr_div.removeClass("showing");
+          let next_div = curr_div.next();
+          if (next_div.length) {
+            next_div.addClass("showing");
+            curr_div.removeClass("showing");
+            console.log(curr_div.index());
+          } else {
+            next_div = $("carousel > div:first");
+            next_div.addClass("showing");
+            curr_div.removeClass("showing");
+            console.log(curr_div.index());
+          }
+        }
+        const interval_id = setInterval(next_img, 3000);
+      });
+    </script>
+  </body>
+</html>
