@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>node + jQuery 실습</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!-- <h1>선호하는 음식</h1>
     <section id="food_1">
         <h2 class="title">한식</h2>
@@ -27,7 +27,6 @@
     <!-- p.177 jQuery 기본 선택자 (인접관계 선택자) -->
     <!-- #wrap>#innerwrap>h1{제목1}+h2{제목2}+p*3{내용$} -->
 
-    
     <!-- <div id="wrap">
         <div id="inner_wrap">
             <h1>제목1</h1>
@@ -37,7 +36,6 @@
             <p>내용3</p>
         </div>
     </div> -->
-
 
     <h1>탐색선택자</h1>
     <!-- <ul id="menu">
@@ -58,7 +56,7 @@
     </div> -->
 
     <!-- p.198 배열 관련 메소드 -->
-    <ul id="menu1">
+    <!-- <ul id="menu1">
         <li>내용 1-1</li>
         <li>내용 1-2</li>
         <li>내용 1-3</li>
@@ -67,114 +65,136 @@
         <li>내용 2-1</li>
         <li>내용 2-2</li>
         <li>내용 2-3</li>
-    </ul>
+    </ul> -->
+    <!-- 
+    <ul>
+      <li>내용 1-1</li>
+      <li>내용 1-2</li>
+      <li id="list3">내용 1-3</li>
+      <li>내용 1-4</li>
+    </ul> -->
 
+    <!-- <div id="wrap">
+      <p><a href="http://easyspub.co.kr" target="blank">easyspub</a></p>
+      <p><a href="http://naver.com">네이버</a></p>
+      <p><a href="http://google.co.kr">구글</a></p>
+      <p><a href="http://daum.net">다음</a></p>
+      <form action="" id="member_f" method="get">
+        <p>
+          <label for="user_id">id</label>
+          <input type="text" id="user_id" name="user_id" />
+        </p>
+        <p>
+          <label for="user_pw">pw</label>
+          <input type="text" id="user_pw" name="user_pw" />
+        </p>
+      </form>
+    </div> -->
+
+    <!-- p.209 코딩해보세요 -->
     <!-- <script src="script/jquery-3.6.0.min.js"></script> -->
     <!-- <script src="//code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- <script src="//code.jquery.com/jquery-latest.min.js"></script> -->
 
     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // $(function(){
-        //     $("h1").css("color","red");
-        // })
-        
-        // HTML --> DOM 파싱 (문서객체를 불러온다) DOM객체 구조
-        // 선택자를 이용해 원하는 객체를 선택, 조작, 제어 할 수 있음
-        // p.169 세가지 방법 (3번 사용 : 짧다)
+      // $(function(){
+      //     $("h1").css("color","red");
+      // })
 
-        // p.170 선택자
-        //  $ : (모두) 찾아라
-        // 1) 기본 선택자: 직접 선택자, 인접관계 선택자
-        // 2) 탐색 선택자
+      // HTML --> DOM 파싱 (문서객체를 불러온다) DOM객체 구조
+      // 선택자를 이용해 원하는 객체를 선택, 조작, 제어 할 수 있음
+      // p.169 세가지 방법 (3번 사용 : 짧다)
 
-        // $(function(){
-        //     $("h1").css("color","red");
-        //     $("p").css("font-size","24px");
-        // })
+      // p.170 선택자
+      //  $ : (모두) 찾아라
+      // 1) 기본 선택자: 직접 선택자, 인접관계 선택자
+      // 2) 탐색 선택자
 
-        // css() : 속성 조작 메소드
-        // $("*").css("color","slateblue")
-        // $("h1").css("font-size","24px")
-        // $("h2").css({
-        //     color : "orange",
-        //     fontSize : "1rem",
-        //     border : "1px dashed #333",
-        //     padding : "1rem",
-        //     margin : "1rem"
-        // })
+      // $(function(){
+      //     $("h1").css("color","red");
+      //     $("p").css("font-size","24px");
+      // })
 
-        // const LI = $("li");
-        // console.dir(LI);
+      // css() : 속성 조작 메소드
+      // $("*").css("color","slateblue")
+      // $("h1").css("font-size","24px")
+      // $("h2").css({
+      //     color : "orange",
+      //     fontSize : "1rem",
+      //     border : "1px dashed #333",
+      //     padding : "1rem",
+      //     margin : "1rem"
+      // })
 
-        // LI.css({
-        //     color : "white",
-        //     fontSize : "1rem",
-        //     padding : "5rem",
-        //     margin  : ".5rem",
-        //     backgroundColor : "slateblue"
-        // })
+      // const LI = $("li");
+      // console.dir(LI);
 
-        // $("li").css({
-        //     color : "white",
-        //     fontSize : "1rem",
-        //     padding : "5rem",
-        //     margin  : ".5rem",
-        //     backgroundColor : "slateblue"
-        // })
+      // LI.css({
+      //     color : "white",
+      //     fontSize : "1rem",
+      //     padding : "5rem",
+      //     margin  : ".5rem",
+      //     backgroundColor : "slateblue"
+      // })
 
-        // $(function(){
-        // $("#food_1").css({
-        //     background: "tomato",
-        //     color: "white",
-        //     padding: ".5rem"
-        // });
-        // })
-        // $(".title").css({
-        //     border:"1px, dashed #333",
-        //     backgroundColor: "gold",
-        //     margin: "1rem"
-        // })
-        // $("li").css({
-        //     fontStyle: "italic",
-        //     textDecoration: "underline"
-        // })
+      // $("li").css({
+      //     color : "white",
+      //     fontSize : "1rem",
+      //     padding : "5rem",
+      //     margin  : ".5rem",
+      //     backgroundColor : "slateblue"
+      // })
 
-        // $("h1, h2").css({
-        //     color:"darkslateblue"
-        // })
-        // $("ul.list").css({
-        //     backgroundColor: "darkgreen",
-        //     padding: "1rem"
-        // })
-        // const h1 = document.querySelector("h1");
-        // h1.style.color="slateblue"
+      // $(function(){
+      // $("#food_1").css({
+      //     background: "tomato",
+      //     color: "white",
+      //     padding: ".5rem"
+      // });
+      // })
+      // $(".title").css({
+      //     border:"1px, dashed #333",
+      //     backgroundColor: "gold",
+      //     margin: "1rem"
+      // })
+      // $("li").css({
+      //     fontStyle: "italic",
+      //     textDecoration: "underline"
+      // })
 
-        // $(function(){ // ~~~.~~~.~~~() :체이닝(체인이 걸려있는 것과 같은)
-        //     // $("#inner_wrap").children("h2").next().next().next().css({
-        //     // $("#inner_wrap").children("h2").siblings().css({
-        //     // $(".target").closest("div").css({
-        //     $(".target").closest("div").css({
-        //         backgroundColor: "tomato",
-        //         color: "white"
-        //     })
-        // })
-        // $(function(){
-        jQuery(function(){
-            // $("#menu li").first().css("background","gold")
-            // $("#menu li:last").css("background","gold")
-            // $("#menu li").last().css("background","gold")
-            // $("#menu li:odd").css("background","gold")
-            // $("#menu li:eq(0)").css("background","gold") //배열처럼 표현되어 있으나 배열은 아님(유사배열? - array-like)
-            // const LI = $("#menu li") // 유사배열 : collection
-            // LI.eq(0).css("background","gold")
+      // $("h1, h2").css({
+      //     color:"darkslateblue"
+      // })
+      // $("ul.list").css({
+      //     backgroundColor: "darkgreen",
+      //     padding: "1rem"
+      // })
+      // const h1 = document.querySelector("h1");
+      // h1.style.color="slateblue"
 
-        // $("p:last-of-type").css("background","gold")            
-        // $("p:nth-last-child(4)").css("background","gold")            
-        // $("p").slice(0,3).css("background","gold")        
-
+      // $(function(){ // ~~~.~~~.~~~() :체이닝(체인이 걸려있는 것과 같은)
+      //     // $("#inner_wrap").children("h2").next().next().next().css({
+      //     // $("#inner_wrap").children("h2").siblings().css({
+      //     // $(".target").closest("div").css({
+      //     $(".target").closest("div").css({
+      //         backgroundColor: "tomato",
+      //         color: "white"
+      //     })
+      // })
+      // $(function(){
+      jQuery(function () {
+        // $("#menu li").first().css("background","gold")
+        // $("#menu li:last").css("background","gold")
+        // $("#menu li").last().css("background","gold")
+        // $("#menu li:odd").css("background","gold")
+        // $("#menu li:eq(0)").css("background","gold") //배열처럼 표현되어 있으나 배열은 아님(유사배열? - array-like)
+        // const LI = $("#menu li") // 유사배열 : collection
+        // LI.eq(0).css("background","gold")
+        // $("p:last-of-type").css("background","gold")
+        // $("p:nth-last-child(4)").css("background","gold")
+        // $("p").slice(0,3).css("background","gold")
         // p.198 배열 관련 메소드
-        
         // const obj = [
         //     {
         //         "area" : "서울"
@@ -186,17 +206,14 @@
         //         "area" : "광주"
         //     }
         // ];
-
         // console.log(obj);
         // $(obj).each(function(index,elem){
         // $(obj).each(function(i,o){
         //     console.log(i+" : ",o["area"]);
         // })
-
         // $.each($("#menu1 li"),function(i,o){
         //     console.log(i+ " : ", o.innerContent);
         // })
-
         // const arr1 = [
         //     {
         //         "area":"서울",
@@ -220,10 +237,8 @@
         //         return elem
         //     }
         // })
-
         // console.log("========END1=========");
         // console.log(arr2);
-        
         // console.log("========END2=========");
         // const arr3 = $.grep(arr1, function(elem, name){
         //     if(elem.area == "서울"){
@@ -233,28 +248,53 @@
         //     }
         // })
         // console.log(arr3);
-
         // p.204 배열 관련 메소드
-        const arr1 = ["서울","대전","부산","전주"]
-        const arr2 = ["한국","미국","중국","일본"]
-        const obj = {
-            "name" : "정부장",
-            "area" : "서울"
-        }
-        console.log("obj의 정체 : "+typeof obj);
-        const ind_num = $.inArray("부산",arr1)
-        console.log("부산이라는 데이터는 arr1의 "+ind_num+"번째의 인덱스 입니다.");
+        // const arr1 = ["서울","대전","부산","전주"]
+        // const arr2 = ["한국","미국","중국","일본"]
+        // const obj = {
+        //     "name" : "정부장",
+        //     "area" : "서울"
+        // }
+        // console.log("obj의 정체 : "+typeof obj);
+        // const ind_num = $.inArray("부산",arr1)
+        // console.log("부산이라는 데이터는 arr1의 "+ind_num+"번째의 인덱스 입니다.");
+        // const ok_array1 = $.isArray(arr1)
+        // const ok_array2 = $.isArray(obj)
+        // console.log(ok_array1); // 배열객체라면 true 반환
+        // console.log(ok_array2); // 배열객체가 아니라면 false 반환
+        // $.merge(arr1,arr2);
+        // console.log("arr1 : "+arr1);
+        // console.log("arr2 : "+arr2);
+        // $(function () {
+        //   const dix_num = $("list3").index();
+        //   console.log(idx_num)
+        // });
+        // const page_url = [
+        //   "https://naver.com",
+        //   "https://daum.net",
+        //   "https://google.co.kr",
+        // ];
+        // $(function () {
+        //   const nav_item = $("gnb > li");
+        //   nav_item.click(function () {
+        //     let TEXT = $(this).text();
+        //     console.log(TEXT + "페이지로 이동합니다.");
+        //     // location.href = page_url(idx)
+        //     // window.open(page_url[idx],text)
+        //   });
+        // });
 
-        const ok_array1 = $.isArray(arr1)
-        const ok_array2 = $.isArray(obj)
+        // p.207 속성 탐색 메소드
+        $(function () {
+          $("#wrap a[target]").css("color", "red");
+          $("#wrap a[href^=https]").css("color", "green");
+          $("#wrap a[href$=net]").css("color", "blue");
+          $("#wrap a[href*=google]").css("color", "magenta");
 
-        console.log(ok_array1); // 배열객체라면 true 반환
-        console.log(ok_array2); // 배열객체가 아니라면 false 반환
-
-        $.merge(arr1,arr2);
-        console.log("arr1 : "+arr1);
-        console.log("arr2 : "+arr2);
-        })
+          $("#member_f :text").css("border", "1px dotted red");
+          $("#member_f :pw").css("background", "gold");
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
