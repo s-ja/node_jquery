@@ -15,7 +15,7 @@
     </style>
   </head>
   <body>
-    <h1>탐색선택자</h1>
+    <!-- <h1>탐색선택자</h1> -->
     <!-- 
     <div id="wrap">
       <p>내용1</p>
@@ -53,10 +53,10 @@
     </ol>
 
     <div id="carousel">
-      <div><img src="images/landscape1.jpg" alt="" /></div>
-      <div><img src="images/landscape2.jpg" alt="" /></div>
-      <div><img src="images/landscape3.jpg" alt="" /></div>
-      <div><img src="images/landscape4.jpg" alt="" /></div>
+      <div><img src="images/landscape1.jpg" alt="풍경1" /></div>
+      <div><img src="images/landscape2.jpg" alt="풍경2" /></div>
+      <div><img src="images/landscape3.jpg" alt="풍경3" /></div>
+      <div><img src="images/landscape4.jpg" alt="풍경4" /></div>
     </div>
 
     <!-- <div id="result">
@@ -81,7 +81,7 @@
 
     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      //   $(function () {
+    $(function () {
       //     $("#wrap p:hidden").css({
       //       display: "block",
       //       backgroundColor: "#ff0",
@@ -110,32 +110,33 @@
       //     });
       //   });
 
-      $("button").click(function () {
-        // $("result").text("<h2>조작된 텍스트</h2>");
-        $("result").html("<h2>조작된 텍스트</h2>");
-      });
+      // $("button").click(function () {
+      //   // $("result").text("<h2>조작된 텍스트</h2>");
+      //   $("result").html("<h2>조작된 텍스트</h2>");
+      // });
 
-      $("#bt2").click(function () {
-        const target_img = $("#sec_1").find("img");
-        let img_num = 1;
-        $("#bt2").click(function () {
-          if (img_num < 0) img_num = 100;
-          img_num--;
-          const img_url = "https://picsum.photos/id/" + img_num + "/200/300";
-          target_img.attr("src", img_url);
-        });
+      // $("#bt2").click(function () {
+      //   const target_img = $("#sec_1").find("img");
+      //   let img_num = 1;
+      //   $("#bt2").click(function () {
+      //     if (img_num < 0) img_num = 100;
+      //     img_num--;
+      //     const img_url = "https://picsum.photos/id/" + img_num + "/200/300";
+      //     target_img.attr("src", img_url);
+      //   });
 
-        $(window).keyup(function (e) {
-          if (e.keyCode == 37) {
-            $("#bt2").click();
-          } else if (e.keyCode == 38) {
-            $("#bt3").click();
-          } else if (e.keyCode == 39) {
-            $("#bt3").click();
-          } else if (e.keyCode == 39) {
-            $("#bt3").click();
-          }
-        });
+      //   $(window).keyup(function (e) {
+      //     if (e.keyCode == 37) {
+      //       $("#bt2").click();
+      //     } else if (e.keyCode == 38) {
+      //       $("#bt3").click();
+      //     } else if (e.keyCode == 39) {
+      //       $("#bt3").click();
+      //     } else if (e.keyCode == 39) {
+      //       $("#bt3").click();
+      //     }
+      //   });
+        
         //   p.221 코딩해보세요
         // const target_img = $("sec_1").find("img");
         // const img_src = target_img.attr("src");
@@ -146,7 +147,7 @@
 
         // target_img.attr("src", "https://picsum.photos/id/10/200/300");
 
-        $("carousel > div:first").addClass("showing");
+        $("#carousel > div:first").addClass("showing");
 
         function next_img() {
           let curr_div = $("#carousel > div.showing");
@@ -154,20 +155,22 @@
           // let next_div = curr_div.next();
           // next_div.addClass("showing");
           // curr_div.removeClass("showing");
+          console.log(curr_div.index());
           let next_div = curr_div.next();
+
           if (next_div.length) {
             next_div.addClass("showing");
             curr_div.removeClass("showing");
             console.log(curr_div.index());
           } else {
-            next_div = $("carousel > div:first");
+            next_div = $("#carousel > div:first");
             next_div.addClass("showing");
             curr_div.removeClass("showing");
             console.log(curr_div.index());
           }
         }
         const interval_id = setInterval(next_img, 3000);
-      });
+    });
     </script>
   </body>
 </html>
