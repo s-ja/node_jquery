@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>node + jQuery 실습</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/04c1ea1f1c.js" crossorigin="anonymous"></script>
     <style>
       #pac {
         width: 90px;
@@ -52,11 +53,18 @@
       <li>캐러셀의 구조를 아래와 같이 작성</li>
     </ol>
 
-    <div id="carousel">
-      <div><img src="images/landscape1.jpg" alt="풍경1" /></div>
-      <div><img src="images/landscape2.jpg" alt="풍경2" /></div>
-      <div><img src="images/landscape3.jpg" alt="풍경3" /></div>
-      <div><img src="images/landscape4.jpg" alt="풍경4" /></div>
+    <!-- 0407 이전 다음 버튼 추가하기 -->
+    <div class="carousel_wrap">
+      <div class="controls">
+        <div id="prev"><i class="fa-solid fa-caret-left"></i></div>
+        <div id="next"><i class="fa-solid fa-caret-right"></i></div>
+      </div>
+      <div id="carousel">
+        <div><img src="images/landscape1.jpg" alt="풍경1" /></div>
+        <div><img src="images/landscape2.jpg" alt="풍경2" /></div>
+        <div><img src="images/landscape3.jpg" alt="풍경3" /></div>
+        <div><img src="images/landscape4.jpg" alt="풍경4" /></div>
+      </div>
     </div>
 
     <!-- <div id="result">
@@ -81,6 +89,7 @@
 
     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    let interval_id = null;
     $(function () {
       //     $("#wrap p:hidden").css({
       //       display: "block",
@@ -147,29 +156,72 @@
 
         // target_img.attr("src", "https://picsum.photos/id/10/200/300");
 
+        // $("#carousel > div:first").addClass("showing");
+
+        // function next_img() {
+        //   let curr_div = $("#carousel > div.showing");
+        //   // console.log(curr_div.index());
+        //   // let next_div = curr_div.next();
+        //   // next_div.addClass("showing");
+        //   // curr_div.removeClass("showing");
+        //   console.log(curr_div.index());
+        //   let next_div = curr_div.next();
+
+        //   if (next_div.length) {
+        //     next_div.addClass("showing");
+        //     curr_div.removeClass("showing");
+        //     console.log(curr_div.index());
+        //   } else {
+        //     next_div = $("#carousel > div:first");
+        //     next_div.addClass("showing");
+        //     curr_div.removeClass("showing");
+        //     console.log(curr_div.index());
+        //   }
+        // }
+        // const interval_id = setInterval(next_img, 3000);
+
+        // curr_img.addClass("showing")
+
         $("#carousel > div:first").addClass("showing");
 
-        function next_img() {
-          let curr_div = $("#carousel > div.showing");
-          // console.log(curr_div.index());
-          // let next_div = curr_div.next();
-          // next_div.addClass("showing");
-          // curr_div.removeClass("showing");
-          console.log(curr_div.index());
-          let next_div = curr_div.next();
-
-          if (next_div.length) {
-            next_div.addClass("showing");
-            curr_div.removeClass("showing");
-            console.log(curr_div.index());
-          } else {
-            next_div = $("#carousel > div:first");
-            next_div.addClass("showing");
-            curr_div.removeClass("showing");
-            console.log(curr_div.index());
-          }
+        $("#next").click(function(){
+        //   let curr_img = $("#carousel > div.showing");
+        //   let next_img = curr_img.next();
+        //   if(!next_img.length) next_img = $("#carousel > div:first");
+        //     curr_img.removeClass("showing");
+        //     next_img.addClass("showing");
+        change_next();
+        });
+      
+        $("#prev").click(function(){
+          change_prev();
+        });
+        // 3. 지정된 시간 마다 반복 실행 (기본은 다음사진으로 변경 함수 실행)
+        // 다음으로 넘어가는 순간에 함수 실행시 두번 넘어가는 현상이 발생
+        interval_id = setInterval(change_next,3000)
+        
+        function change_next(){
+          let curr_img = $("#carousel > div.showing");
+          let next_img = curr_img.next();
+          if(!next_img.length) next_img = $("#carousel > div:first");
+            curr_img.removeClass("showing");
+            next_img.addClass("showing");
         }
-        const interval_id = setInterval(next_img, 3000);
+        function change_prev(){
+          let curr_img = $("#carousel > div.showing");
+          let next_img = curr_img.prev();
+          if(!next_img.length) next_img = $("#carousel > div:last");
+            curr_img.removeClass("showing");
+            next_img.addClass("showing");
+        }
+
+        // 4.이전 다음 누르려고 마우스가 .carousel_wrap에 다으면 interval 해제
+        $(".carousel_wrap").mouseenter(function(){
+          clearInterval(interval_id)
+        })
+        $(".carousel_wrap").mouseleave(function(){
+          interval_id = setInterval(change_next,1000)
+        })
     });
     </script>
   </body>

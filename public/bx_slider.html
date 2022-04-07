@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bxslider 플러그인 활용하기</title>
+    <!-- bxslider easyway step1. include plugins-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+    <!-- step4. customize css -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- step2. initialize bxslider plugin -->
+    <script>
+        $(document).ready(function(){
+          $('.slider').bxSlider({
+              mode: 'fade',
+              auto: true,
+              autoHover: true
+          });
+        });
+    </script>
+</head>
+<body>
+    <h1>bxslider 플러그인이란?</h1>
+    <p>
+
+    </p>
+    <p>모바일에도 최적화되어 있고 반응형 디자인에도 최적화</p>
+    <!-- p.352 ~ p.357 -->
+    <!-- step3. create HTML structure for slider -->
+    <div class="slider">
+        <div><img src="images/landscape1.jpg" alt="풍경1" /></div>
+        <div><img src="images/landscape2.jpg" alt="풍경2" /></div>
+        <div><img src="images/landscape3.jpg" alt="풍경3" /></div>
+        <div><img src="images/landscape4.jpg" alt="풍경4" /></div>
+      </div>
+    
+</body>
+</html>
