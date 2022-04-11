@@ -16,6 +16,9 @@ app.get("/",function(req,res){
 app.get("/index2",function(req,res){
     res.sendFile(_dirname+"/public/index2.html")
 })
+app.get("/tab",function(req,res){
+    res.sendFile(_dirname+"/public/tab.html")
+})
 app.get("/slider",function(req,res){
     // res.send("server is running!")
     // static file

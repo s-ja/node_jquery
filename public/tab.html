@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>node + jQuery 실습</title>
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <style>
+      body{
+        font: 16px/1.5 "Noto Sans KR",sans-serif;
+        color: #333;
+      }
+      a,a:link{
+        text-decoration: none;
+        color: inherit;
+      }
+      #popup{
+        display: none;
+        position: absolute;
+        width: 400px;
+        height: 350px;
+        background: aliceblue;
+        border: 1px solid #333;
+        left: 50%;
+        top: 50%;
+        padding: 30px;
+        box-sizing: border-box;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+      }
+      #popup > button{
+        position: absolute;
+        right: 30px;
+      }
+      .wrap{
+        width: 1200px;
+        margin: 0 auto;
+      }
+      .column_a{
+        height: 100px;
+        background: darkcyan;
+      }
+      .column_b{
+        height: 300px;
+        background: tomato;
+      }
+      .column_c{
+        height: 200px;
+        display: flex;
+      }
+      .tab{
+        flex: 1;
+      }
+      .banner{
+        flex: 1;
+      }
+      .shortcut{
+        flex: 1;
+      }
+      .tab_link{
+        border-bottom:  2px solid black;
+        height: 30px;
+      }
+      .tab_link > a{
+        display: inline-block;
+        height: 30px;
+        width: 120px;
+        text-align: center;
+        line-height: 30px;
+        box-sizing: border-box;
+      }
+      .tab_link > a.active{
+        border-top: 2px solid #333;
+        border-bottom: 2px solid white;
+        border-left: 2px solid #333;
+        border-right: 2px solid #333;
+        margin: 2px 0 0 0;
+      }
+      .tab_content > div{
+        display: none;
+        /* list-style: none; */
+      }
+      /* .tab_content >div:first-child{
+        display: block;
+      } */
+      .gallary > ul {
+        /* display: none; */
+        list-style: none;
+        display: flex;
+        column-gap: 1rem;
+      }
+      .showing{
+        display: block !important;
+      }
+      .column_d{
+        height: 100px;
+        background: gold;
+      }
+      </style>
+  </head>
+  <body>
+    <div id="popup">
+      <h2>title</h2>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <button>&times;닫기</button>
+    </div>
+    <div class="wrap">
+      <div class="column_a">헤더영역</div>
+      <div class="column_b">캐러셀영역</div>
+      <div class="column_c">
+        <div class="tab">
+          <div class="tab_link">
+            <a href="#" class="active">공지사항</a>
+            <a href="#">갤러리</a>
+          </div>
+          <div class="tab_content">
+           <div class="notice showing">
+             <ol>
+               <li>공지사항1</li>
+               <li>공지사항2</li>
+               <li>공지사항3</li>
+               <li>공지사항4</li>
+             </ol>
+           </div>
+            <div class="gallary">
+              <ul>
+                <li>
+                  <img src="https://picsum.photos/100/100" alt="placeholder">
+                </li>
+                <li>
+                  <img src="https://picsum.photos/100/100" alt="placeholder">
+                </li>
+                <li>
+                  <img src="https://picsum.photos/100/100" alt="placeholder">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="banner">배너</div>
+        <div class="shortcut">바로가기</div>
+      </div>
+      <div class="column_d">푸터영역</div>
+    </div>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      // const { JSDOM } = require( "jsdom" );
+      // const { window } = new JSDOM( "" );
+      // const $ = require( "jquery" )( window );
+      $(function(){
+        tabs();
+        popup();
+      })
+      
+      function popup(){
+        popup_open();
+        popup_close();
+        function popup_open(){
+          $(".notice ol li:first").click(function(){
+            if(!$("#popup").hasClass("showing")){
+              $("#popup").addClass("showing")
+            }
+          })
+        }
+        function popup_close(){
+          $("#popup > button").click(function(){
+            if($("#popup").hasClass("showing")){
+              $("#popup").removeClass("showing")
+          }
+        })
+      }
+    }
+
+    function tabs(){
+      const content = $(".tab_content > div");
+      const menu = $(".tab_link > a");
+      menu.click(function(){
+        if(!$(this).hasClass("active")){
+          $(this).addClass("active")
+          $(this).siblings().removeClass("active")
+        }
+
+        let idx = $(this).index();
+        // console.log(idx);
+        // console.log(content);
+        content.eq(idx).addClass("showing")
+        content.eq(idx).siblings().removeClass("showing")
+      })
+    }
+    </script>
+  </body>
+</html>
