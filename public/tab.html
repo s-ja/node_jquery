@@ -106,6 +106,9 @@
     <div id="popup">
       <h2>title</h2>
       <p>Lorem ipsum dolor sit amet.</p>
+      <!-- <button>&times;닫기</button> -->
+      <!-- <label for="checkbox"><input type="checkbox" id="user_check">하루동안 보이지 않기</label> -->
+      <label><input type="checkbox" id="user_check">하루동안 보이지 않기</label>
       <button>&times;닫기</button>
     </div>
     <div class="wrap">
@@ -146,8 +149,17 @@
       </div>
       <div class="column_d">푸터영역</div>
     </div>
-    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script> -->
+    <!-- 제이쿼리 쿠키 CDN-->
+
+    <script src="script/jquery.cookie.js"></script>
+    <!-- <script type="module"> -->
     <script>
+      // import Cookies from 'js-cookie'
+      // Cookies.set('foo', 'bar')
+
       // const { JSDOM } = require( "jsdom" );
       // const { window } = new JSDOM( "" );
       // const $ = require( "jquery" )( window );
@@ -161,17 +173,51 @@
         popup_close();
         function popup_open(){
           $(".notice ol li:first").click(function(){
-            if(!$("#popup").hasClass("showing")){
-              $("#popup").addClass("showing")
+            // let set_value = localStorage.getItem("use_pop")
+            // console.log(setValue);
+            let set_value = $.cookie('hidden_a_day')
+            if(set_value !== "yes"){
+              if(!$("#popup").hasClass("showing")){
+                $("#popup").addClass("showing")
+              }
             }
+            console.log("팝업이 호출해도 호출되지 않습니다.");
           })
         }
         function popup_close(){
           $("#popup > button").click(function(){
+            // console.log($("#user_check").val());
+            // console.log($("#user_check").prop("checked"));
+           if($("#user_check").prop("checked")) {
+             console.log("쿠키를 설정합니다.");
+            //  set_local_storage();
+             set_cookie();
+           }
             if($("#popup").hasClass("showing")){
               $("#popup").removeClass("showing")
           }
         })
+      }
+      function set_local_storage(){
+        localStorage.setItem("use_pop","yes")
+      }
+
+      function set_cookie(){
+        $.cookie('hidden_a_day', 'yes', { expires: 1, path: '/' });
+        // let my_date = new Date();
+        // let day_count = 1; //1일 동안 보이지 않게,
+        // my_date.setDate(my_date.getDate()+day_count);
+        // console.log(my_date);
+        
+        // let cookies = ""
+        // cookies +="CookieName=POPUP;";
+        // // cookies +="Domain=webLicense;";
+        // // cookies +="Path=/;";
+        // cookies += "Expires="+my_date.toUTCString()+";";
+        // console.log(cookies);
+
+        // document.cookie = cookies;
+        // // window.document.cookie = cookies;
       }
     }
 
