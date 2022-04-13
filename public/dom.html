@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수치조작 메소드</title>
+    <!-- <script src="//code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        header{
+            border-bottom: 1px solid #333;
+        }
+        .fixed{
+            position: fixed;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background: white;
+            z-index: 100;
+            box-shadow: 0 0 5px rgba(0,0,0,.5);
+        }
+        .header_wrap{
+            max-width: 1280px;
+            height: 150px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        article{
+            height: 1000px;
+            color: aliceblue;
+        }
+        article:nth-last-child(4){
+            background: tomato;
+        }
+        article:nth-last-child(3){
+            background: rgb(180, 0, 0);
+        }
+        article:nth-last-child(2){
+            background: rgb(146, 0, 0);
+        }
+        article:nth-last-child(1){
+            background: rgb(78, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header_wrap">
+            <div class="logo">
+                <p class="brand capital">smart<span class="upper">uxui</span> </p>
+                <p class="brand_text">스마트 uxui 디자인 과정</p>
+            </div>
+            <nav class="main_nav">
+                <ul id="gnb">
+                    <li><a href="#">소개</a></li>
+                    <li><a href="#">인사말</a></li>
+                    <li><a href="#">서비스</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <h2 class="d_none">본문</h2>
+        <article>
+            <h3>소개 섹션</h3>
+        </article>
+        <article>
+            <h3>인사말 섹션</h3>
+        </article>
+        <article>
+            <h3>서비스 섹션</h3>
+        </article>
+        <article>
+            <h3>고객센터 섹션</h3>
+        </article>
+    </section>
+    <aside>
+        <div>
+            <button id="move_top">맨위로</button>
+        </div>
+        <div>
+            <ul>
+                <li>회사소개</li>
+                <li>이용약관</li>
+                <li>무단 이메일 수집 거부</li>
+            </ul>
+        </div>
+    </aside>
+    <footer>
+        <div class="logo">
+            <p class="brand capital">smart<span class="upper">uxui</span> </p>
+            <p class="brand_text">스마트 uxui 디자인 과정</p>
+        </div>
+        <div class="copy_info">
+            <p>copyright를 여기에 작성합니다.</p>
+            <address>대표자: 홍길동 시업자번호: 광주-서구-제23-1호</address>
+        </div>
+    </footer>
+    <!-- <div id="box">
+    </div> -->
+    <script>
+        // const box = document.querySelector("#box");
+        // const box_height = box.computeStyle()...
+        // $(function(){
+        //     let box_height = $("#box").height();
+        //     let box_width = $("#box").width();
+        //     console.log("높이 : "+box_height + "px");
+        //     console.log("넓이 : "+box_width + "px");
+        // })
+        const articles = $("article");
+        console.log(articles, typeof articles);
+        $("#gnb > li").on({
+            click:function(){
+                let tg = $(this);
+                let ind = tg.index();
+                let article_top = null;
+                if(ind == 0){
+                    article_top = 0;
+                }else{
+                    article_top = articles.eq(ind).offset().top;
+                }
+                // console.log("세로 스크롤바 위치 : "+articles.eq(ind).scrolltop());
+                // let articles = parseInt(articles.eq(ind).offset().top);
+                $("html,body").animate({
+                    scrollTop: article_top
+                }, function(){
+                    $("#header").addClass("fixed")
+                })
+                // console.log("클릭한 메뉴의 인덱스 번호 : "+tg.index());
+                // console.log($(this).text());
+
+            }
+            // ,
+            // mouseenter: function(){
+            //     console.log("마우스가 닿았습니다");
+            // },
+            // mouseleave: function(){
+            //     console.log("마우스가 떠났습니다");
+
+            // }
+        })
+    </script>
+</body>
+</html>
