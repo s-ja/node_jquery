@@ -43,6 +43,9 @@
         article:nth-last-child(1){
             background: rgb(78, 0, 0);
         }
+        article:nth-of-type(1){
+            background: red;
+        }
     </style>
 </head>
 <body>
@@ -110,7 +113,7 @@
         //     console.log("높이 : "+box_height + "px");
         //     console.log("넓이 : "+box_width + "px");
         // })
-        const articles = $("article");
+        const articles = $("article"); // collection : 유사배열 : (없다) vs 배열 : (메소드, 프로퍼티)
         console.log(articles, typeof articles);
         $("#gnb > li").on({
             click:function(){
@@ -133,6 +136,10 @@
                 // console.log($(this).text());
 
             }
+            // 클릭하면, 몇번째 li를 눌렀는지 알려주고 : index()
+            // article 4개중 각 li가 각 article 과 관계를 연결
+            // 결과적으로 해당 메뉴-article 위치로 화면을 이동시키는 스크립트
+
             // ,
             // mouseenter: function(){
             //     console.log("마우스가 닿았습니다");

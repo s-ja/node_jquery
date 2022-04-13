@@ -171,7 +171,7 @@
       function popup(){
         popup_open();
         popup_close();
-        function popup_open(){
+        function popup_open(){ // 공지사항 첫번째 항목 클릭시 팝업 열기
           $(".notice ol li:first").click(function(){
             // let set_value = localStorage.getItem("use_pop")
             // console.log(setValue);
@@ -221,16 +221,18 @@
       }
     }
 
-    function tabs(){
+    function tabs(){ // 1. 대상찾기 : 클릭할 세가지 a 요소
       const content = $(".tab_content > div");
       const menu = $(".tab_link > a");
-      menu.click(function(){
-        if(!$(this).hasClass("active")){
+      menu.click(function(){ // 2. active 클래스를 갖고 있는지 아닌지 검사 : hasClass() --> true, false
+        if(!$(this).hasClass("active")){ // 3. 만약 없을시 (.hasClass()가 false일시 할일을 정함.)
           $(this).addClass("active")
           $(this).siblings().removeClass("active")
         }
-
+        // 4. 클릭한 메뉴의 인덱스 번호를 알아온다.
         let idx = $(this).index();
+        // 5. 그런다음, 내용도 add/remove 하자 : show() <--> display:block + animation effect
+        //                                      .hide() <--> display:none + animation effect
         // console.log(idx);
         // console.log(content);
         content.eq(idx).addClass("showing")

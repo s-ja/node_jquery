@@ -42,6 +42,7 @@
       </p>
     </form> -->
 
+    <!-- p.217 코딩해보세요 -->
     <h1>객체 조작</h1>
     <p>객체를 생성, 복제, 삭제, 속성 변환하는 조작 메소드에 대해 살펴봅시다.</p>
 
@@ -89,6 +90,7 @@
 
     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+      //  전역변수 선언
     let interval_id = null;
     $(function () {
       //     $("#wrap p:hidden").css({
@@ -182,9 +184,12 @@
 
         // curr_img.addClass("showing")
 
+
+        // 1. 최초 첫번째 div는 .showing을 가진 1번 사진 div로 설정
         $("#carousel > div:first").addClass("showing");
 
-        $("#next").click(function(){
+        // 2. 이제 다음 버튼을 누르면 curr, next를 변경하며 add/remove 한다.
+        $("#next").click(function(){ // 다음 누르면 할 일 - chang_next 호출
         //   let curr_img = $("#carousel > div.showing");
         //   let next_img = curr_img.next();
         //   if(!next_img.length) next_img = $("#carousel > div:first");
@@ -193,7 +198,7 @@
         change_next();
         });
       
-        $("#prev").click(function(){
+        $("#prev").click(function(){ // 이전 누르면 할 일
           change_prev();
         });
         // 3. 지정된 시간 마다 반복 실행 (기본은 다음사진으로 변경 함수 실행)
@@ -216,10 +221,10 @@
         }
 
         // 4.이전 다음 누르려고 마우스가 .carousel_wrap에 다으면 interval 해제
-        $(".carousel_wrap").mouseenter(function(){
+        $(".carousel_wrap").mouseenter(function(){ // 마우스가 닿을시
           clearInterval(interval_id)
         })
-        $(".carousel_wrap").mouseleave(function(){
+        $(".carousel_wrap").mouseleave(function(){ // 마우스 벗어날시
           interval_id = setInterval(change_next,1000)
         })
     });
